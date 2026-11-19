@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "tpl_001",
+      "title": "Night Owl - Auto DND",
+      "description": "Automatically mutes your phone and lowers brightness at night.",
+      "fileUrl": "https://raw.githubusercontent.com/anjumhabib/automate-pro-templates/main/night_owl.json"
+    }
+  ]
+}
