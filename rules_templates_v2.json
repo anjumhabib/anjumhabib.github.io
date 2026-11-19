@@ -1,0 +1,635 @@
+[
+  {
+    "rule": {
+      "id": 1,
+      "name": "Work Mode - Auto Mute & Office Wi-Fi",
+      "description": "Automatically silences device and connects to office Wi-Fi during work hours when arriving at the workplace.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 1,
+        "ruleId": 1,
+        "triggerType": "LOCATION_GEOFENCE",
+        "parametersJson": "{\"latitude\":37.7891,\"longitude\":-122.4014,\"radiusMeters\":150,\"transitionType\":\"ENTER\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 1,
+        "ruleId": 1,
+        "conditionType": "TIME_RANGE",
+        "parametersJson": "{\"startTime\":\"09:00\",\"endTime\":\"18:00\",\"daysOfWeek\":[2,3,4,5,6]}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 1,
+        "ruleId": 1,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"VIBRATE\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 2,
+        "ruleId": 1,
+        "actionType": "SET_WIFI",
+        "parametersJson": "{\"state\":\"ENABLED\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      },
+      {
+        "id": 3,
+        "ruleId": 1,
+        "actionType": "SHOW_NOTIFICATION",
+        "parametersJson": "{\"title\":\"Work Mode Active\",\"message\":\"Device silenced and connected to Office Wi-Fi\"}",
+        "isEnabled": true,
+        "executionOrder": 2
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 2,
+      "name": "Night Sleep - DND & Dim Display",
+      "description": "Enables Silent mode, dims screen brightness, and displays bedtime confirmation when connected to charger at night.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 2,
+        "ruleId": 2,
+        "triggerType": "POWER_STATE",
+        "parametersJson": "{\"connected\":true}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 2,
+        "ruleId": 2,
+        "conditionType": "TIME_RANGE",
+        "parametersJson": "{\"startTime\":\"23:00\",\"endTime\":\"07:00\"}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 4,
+        "ruleId": 2,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"SILENT\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 5,
+        "ruleId": 2,
+        "actionType": "SET_BRIGHTNESS",
+        "parametersJson": "{\"brightness\":12}",
+        "isEnabled": true,
+        "executionOrder": 1
+      },
+      {
+        "id": 6,
+        "ruleId": 2,
+        "actionType": "SHOW_NOTIFICATION",
+        "parametersJson": "{\"title\":\"Goodnight Mode\",\"message\":\"Do Not Disturb enabled. Display brightness dimmed.\"}",
+        "isEnabled": true,
+        "executionOrder": 2
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 3,
+      "name": "Car Bluetooth - Auto Drive Mode",
+      "description": "Sets optimal media volume and announces safe driving through voice text-to-speech when connecting to car Bluetooth.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 3,
+        "ruleId": 3,
+        "triggerType": "BLUETOOTH_STATE",
+        "parametersJson": "{\"checkHardwareState\":false,\"connected\":true,\"deviceName\":\"Car Audio Media\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 7,
+        "ruleId": 3,
+        "actionType": "SET_VOLUME",
+        "parametersJson": "{\"levelPercent\":85,\"streamType\":\"MEDIA\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 8,
+        "ruleId": 3,
+        "actionType": "SPEAK_TEXT",
+        "parametersJson": "{\"text\":\"Car Bluetooth connected. Safe driving!\",\"pitch\":1.0,\"speed\":1.0}",
+        "isEnabled": true,
+        "executionOrder": 1
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 4,
+      "name": "Battery Low Saver (Below 20%)",
+      "description": "Conserves battery by enabling Battery Saver, dimming brightness, and sending a warning notification when below 20%.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 4,
+        "ruleId": 4,
+        "triggerType": "BATTERY_LEVEL",
+        "parametersJson": "{\"level\":20,\"operator\":\"<\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 3,
+        "ruleId": 4,
+        "conditionType": "POWER_STATE",
+        "parametersJson": "{\"connected\":false}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 9,
+        "ruleId": 4,
+        "actionType": "BATTERY_SAVER",
+        "parametersJson": "{\"state\":\"enable\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 10,
+        "ruleId": 4,
+        "actionType": "SET_BRIGHTNESS",
+        "parametersJson": "{\"brightness\":20}",
+        "isEnabled": true,
+        "executionOrder": 1
+      },
+      {
+        "id": 11,
+        "ruleId": 4,
+        "actionType": "SHOW_NOTIFICATION",
+        "parametersJson": "{\"title\":\"Battery Saver Activated\",\"message\":\"Battery is below 20%. Background limits applied.\"}",
+        "isEnabled": true,
+        "executionOrder": 2
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 5,
+      "name": "Home Arrival - Welcome & Unmute",
+      "description": "Automatically connects to home Wi-Fi, restores ringer volume to normal, and speaks a welcome greeting when arriving home.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 5,
+        "ruleId": 5,
+        "triggerType": "LOCATION_GEOFENCE",
+        "parametersJson": "{\"latitude\":37.7749,\"longitude\":-122.4194,\"radiusMeters\":100,\"transitionType\":\"ENTER\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 12,
+        "ruleId": 5,
+        "actionType": "SET_WIFI",
+        "parametersJson": "{\"state\":\"ENABLED\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 13,
+        "ruleId": 5,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"NORMAL\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      },
+      {
+        "id": 14,
+        "ruleId": 5,
+        "actionType": "SET_VOLUME",
+        "parametersJson": "{\"levelPercent\":70,\"streamType\":\"RINGTONE\"}",
+        "isEnabled": true,
+        "executionOrder": 2
+      },
+      {
+        "id": 15,
+        "ruleId": 5,
+        "actionType": "SPEAK_TEXT",
+        "parametersJson": "{\"text\":\"Welcome home! Wi-Fi connected and ringer restored.\",\"pitch\":1.0,\"speed\":1.0}",
+        "isEnabled": true,
+        "executionOrder": 3
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 6,
+      "name": "Driving Auto-Responder",
+      "description": "Automatically sends an SMS reply to incoming messages when connected to Car Bluetooth while driving.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 6,
+        "ruleId": 6,
+        "triggerType": "SMS_RECEIVED",
+        "parametersJson": "{\"senderNumber\":\"\",\"keyword\":\"\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 4,
+        "ruleId": 6,
+        "conditionType": "BLUETOOTH_STATE",
+        "parametersJson": "{\"connected\":true}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 16,
+        "ruleId": 6,
+        "actionType": "SEND_SMS",
+        "parametersJson": "{\"phoneNumber\":\"[Incoming_Number]\",\"message\":\"I'm driving right now. I'll get back to you shortly.\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 7,
+      "name": "VIP DND Bypass",
+      "description": "Overrides Do Not Disturb mode and sets maximum ringer volume when a priority phone call is received.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 7,
+        "ruleId": 7,
+        "triggerType": "INCOMING_CALL",
+        "parametersJson": "{\"callerNumber\":\"\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 17,
+        "ruleId": 7,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"NORMAL\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 18,
+        "ruleId": 7,
+        "actionType": "SET_VOLUME",
+        "parametersJson": "{\"levelPercent\":100,\"streamType\":\"RINGTONE\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 8,
+      "name": "Find My Phone (SMS)",
+      "description": "Restores ringer volume to 100% and speaks an audible location alert when receiving an SMS with keyword LOSTPHONE.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 8,
+        "ruleId": 8,
+        "triggerType": "SMS_RECEIVED",
+        "parametersJson": "{\"keyword\":\"LOSTPHONE\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 19,
+        "ruleId": 8,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"NORMAL\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 20,
+        "ruleId": 8,
+        "actionType": "SET_VOLUME",
+        "parametersJson": "{\"levelPercent\":100,\"streamType\":\"RINGTONE\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      },
+      {
+        "id": 21,
+        "ruleId": 8,
+        "actionType": "SPEAK_TEXT",
+        "parametersJson": "{\"text\":\"I am over here!\",\"pitch\":1.0,\"speed\":1.0}",
+        "isEnabled": true,
+        "executionOrder": 2
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 9,
+      "name": "Missed Call Auto-Text",
+      "description": "Sends an automated SMS text message back to callers missed during office work hours.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 9,
+        "ruleId": 9,
+        "triggerType": "MISSED_CALL",
+        "parametersJson": "{\"callerNumber\":\"\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 5,
+        "ruleId": 9,
+        "conditionType": "TIME_RANGE",
+        "parametersJson": "{\"startTime\":\"09:00\",\"endTime\":\"17:00\"}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 22,
+        "ruleId": 9,
+        "actionType": "SEND_SMS",
+        "parametersJson": "{\"phoneNumber\":\"[Incoming_Number]\",\"message\":\"Sorry I missed your call, I'm currently working. Please text me.\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 10,
+      "name": "Smart Home Webhook (Arrival)",
+      "description": "Triggers a home automation webhook POST request when entering your home geofence.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 10,
+        "ruleId": 10,
+        "triggerType": "LOCATION_GEOFENCE",
+        "parametersJson": "{\"latitude\":37.7749,\"longitude\":-122.4194,\"radiusMeters\":100,\"transitionType\":\"ENTER\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 23,
+        "ruleId": 10,
+        "actionType": "WEBHOOK",
+        "parametersJson": "{\"url\":\"https://maker.ifttt.com/trigger/arrived/json\",\"method\":\"POST\",\"body\":\"{\\\"event\\\":\\\"home_arrival\\\"}\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 11,
+      "name": "Fully Charged Alert",
+      "description": "Speaks a voice notification and shows an alert when battery charge reaches 100%.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 11,
+        "ruleId": 11,
+        "triggerType": "BATTERY_LEVEL",
+        "parametersJson": "{\"level\":99,\"operator\":\">\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 6,
+        "ruleId": 11,
+        "conditionType": "POWER_STATE",
+        "parametersJson": "{\"connected\":true}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 24,
+        "ruleId": 11,
+        "actionType": "SPEAK_TEXT",
+        "parametersJson": "{\"text\":\"Battery is fully charged.\",\"pitch\":1.0,\"speed\":1.0}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 25,
+        "ruleId": 11,
+        "actionType": "SHOW_NOTIFICATION",
+        "parametersJson": "{\"title\":\"Battery 100% Full\",\"message\":\"Your device is fully charged. You can unplug it now.\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 12,
+      "name": "Morning Briefing",
+      "description": "Sets pleasant media volume and speaks a morning greeting when waking up and turning on the screen.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 12,
+        "ruleId": 12,
+        "triggerType": "SCREEN_STATE",
+        "parametersJson": "{\"state\":\"SCREEN_ON\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": 7,
+        "ruleId": 12,
+        "conditionType": "TIME_RANGE",
+        "parametersJson": "{\"startTime\":\"06:00\",\"endTime\":\"08:00\"}",
+        "logicalOperator": "AND",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ],
+    "actions": [
+      {
+        "id": 26,
+        "ruleId": 12,
+        "actionType": "SET_VOLUME",
+        "parametersJson": "{\"levelPercent\":50,\"streamType\":\"MEDIA\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 27,
+        "ruleId": 12,
+        "actionType": "SPEAK_TEXT",
+        "parametersJson": "{\"text\":\"Good morning! Have a great day.\",\"pitch\":1.0,\"speed\":1.0}",
+        "isEnabled": true,
+        "executionOrder": 1
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 13,
+      "name": "Wi-Fi Battery Saver",
+      "description": "Turns off Wi-Fi and shows a confirmation message when leaving home to conserve battery power.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 13,
+        "ruleId": 13,
+        "triggerType": "LOCATION_GEOFENCE",
+        "parametersJson": "{\"latitude\":37.7749,\"longitude\":-122.4194,\"radiusMeters\":150,\"transitionType\":\"EXIT\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 28,
+        "ruleId": 13,
+        "actionType": "SET_WIFI",
+        "parametersJson": "{\"state\":\"DISABLED\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      },
+      {
+        "id": 29,
+        "ruleId": 13,
+        "actionType": "SHOW_NOTIFICATION",
+        "parametersJson": "{\"title\":\"Wi-Fi Saver\",\"message\":\"Wi-Fi disabled to save battery.\"}",
+        "isEnabled": true,
+        "executionOrder": 1
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 14,
+      "name": "Meeting Silencer",
+      "description": "Automatically switches device ringer to Vibrate mode when arriving at the office or meeting location.",
+      "isEnabled": true,
+      "isPremium": false
+    },
+    "triggers": [
+      {
+        "id": 14,
+        "ruleId": 14,
+        "triggerType": "LOCATION_GEOFENCE",
+        "parametersJson": "{\"latitude\":37.7891,\"longitude\":-122.4014,\"radiusMeters\":120,\"transitionType\":\"ENTER\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 30,
+        "ruleId": 14,
+        "actionType": "SET_RINGER_MODE",
+        "parametersJson": "{\"mode\":\"VIBRATE\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ]
+  },
+  {
+    "rule": {
+      "id": 15,
+      "name": "Unknown Caller Rejector",
+      "description": "Sends an automated text reply requesting a text message when receiving calls from unrecognized numbers.",
+      "isEnabled": true,
+      "isPremium": true
+    },
+    "triggers": [
+      {
+        "id": 15,
+        "ruleId": 15,
+        "triggerType": "INCOMING_CALL",
+        "parametersJson": "{\"callerNumber\":\"Unknown\"}",
+        "isEnabled": true
+      }
+    ],
+    "conditions": [],
+    "actions": [
+      {
+        "id": 31,
+        "ruleId": 15,
+        "actionType": "SEND_SMS",
+        "parametersJson": "{\"phoneNumber\":\"[Incoming_Number]\",\"message\":\"Please send a text message instead.\"}",
+        "isEnabled": true,
+        "executionOrder": 0
+      }
+    ]
+  }
+]
