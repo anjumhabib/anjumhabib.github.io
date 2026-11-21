@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Work Mode - Auto Mute & Office Wi-Fi",
       "description": "Automatically silences device and connects to office Wi-Fi during work hours when arriving at the workplace.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -59,7 +59,7 @@
       "id": 2,
       "name": "Night Sleep - DND & Dim Display",
       "description": "Enables Silent mode, dims screen brightness, and displays bedtime confirmation when connected to charger at night.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -114,7 +114,7 @@
       "id": 3,
       "name": "Car Bluetooth - Auto Drive Mode",
       "description": "Sets optimal media volume and announces safe driving through voice text-to-speech when connecting to car Bluetooth.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -151,7 +151,7 @@
       "id": 4,
       "name": "Battery Low Saver (Below 20%)",
       "description": "Conserves battery by enabling Battery Saver, dimming brightness, and sending a warning notification when below 20%.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -206,7 +206,7 @@
       "id": 5,
       "name": "Home Arrival - Welcome & Unmute",
       "description": "Automatically connects to home Wi-Fi, restores ringer volume to normal, and speaks a welcome greeting when arriving home.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -259,7 +259,7 @@
       "id": 6,
       "name": "Driving Auto-Responder",
       "description": "Automatically sends an SMS reply to incoming messages when connected to Car Bluetooth while driving.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
@@ -298,7 +298,7 @@
       "id": 7,
       "name": "VIP DND Bypass",
       "description": "Overrides Do Not Disturb mode and sets maximum ringer volume when a priority phone call is received.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
@@ -335,7 +335,7 @@
       "id": 8,
       "name": "Find My Phone (SMS)",
       "description": "Restores ringer volume to 100% and speaks an audible location alert when receiving an SMS with keyword LOSTPHONE.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
@@ -380,7 +380,7 @@
       "id": 9,
       "name": "Missed Call Auto-Text",
       "description": "Sends an automated SMS text message back to callers missed during office work hours.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
@@ -419,7 +419,7 @@
       "id": 10,
       "name": "Smart Home Webhook (Arrival)",
       "description": "Triggers a home automation webhook POST request when entering your home geofence.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
@@ -448,7 +448,7 @@
       "id": 11,
       "name": "Fully Charged Alert",
       "description": "Speaks a voice notification and shows an alert when battery charge reaches 100%.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -495,7 +495,7 @@
       "id": 12,
       "name": "Morning Briefing",
       "description": "Sets pleasant media volume and speaks a morning greeting when waking up and turning on the screen.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -542,7 +542,7 @@
       "id": 13,
       "name": "Wi-Fi Battery Saver",
       "description": "Turns off Wi-Fi and shows a confirmation message when leaving home to conserve battery power.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -579,7 +579,7 @@
       "id": 14,
       "name": "Meeting Silencer",
       "description": "Automatically switches device ringer to Vibrate mode when arriving at the office or meeting location.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": false
     },
     "triggers": [
@@ -608,7 +608,7 @@
       "id": 15,
       "name": "Unknown Caller Rejector",
       "description": "Sends an automated text reply requesting a text message when receiving calls from unrecognized numbers.",
-      "isEnabled": true,
+      "isEnabled": false,
       "isPremium": true
     },
     "triggers": [
